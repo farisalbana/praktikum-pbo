@@ -11,6 +11,15 @@ class Produk
     // Constant
     public const PAJAK = 0.11;
 
+    // Constructor
+    public function __construct(string $kode, string $nama, int $harga, int $stok)
+    {
+        $this->kode = $kode;
+        $this->nama = $nama;
+        $this->harga = $harga;
+        $this->stok = $stok;
+    }
+
     // Method biasa
     public function getTotalHarga(): float
     {
@@ -28,15 +37,21 @@ class Produk
     {
         return "Rp" . number_format($nilai, 0, ",", ".");
     }
+
+    // Destructor
+    public function __destruct()
+    {
+        echo "<br><br>Object produk {$this->nama} telah dihapus.";
+    }
 }
 
-// Membuat object
-$produk = new Produk();
-
-$produk->kode = "P001";
-$produk->nama = "Laptop";
-$produk->harga = 10000000;
-$produk->stok = 5;
+// Membuat object menggunakan constructor
+$produk = new Produk(
+    "P001",
+    "Laptop",
+    10000000,
+    5
+);
 
 // Output
 echo "Produk: " . $produk->nama;
